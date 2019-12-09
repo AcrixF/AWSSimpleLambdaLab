@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>simplelab.lambda</groupId>
+    <artifactId>aws-simplelab</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>a-Lab-Simple-Lambda</module>
+        <module>b-Lab-Simple-Lambda-CLI</module>
+        <module>c-Lab-Simple-Lambda-CLI-CloudFormation</module>
+        <module>d-Lab-Simple-Sdk-Aws-Iam</module>
+    </modules>
+
+    <packaging>pom</packaging>
+
+    <properties>
+        <aws.sdk.version>1.11.470</aws.sdk.version>
+        <aws.lambda.java.core.version>1.2.0</aws.lambda.java.core.version>
+        <aws.lambda.java.events.version>2.2.4</aws.lambda.java.events.version>
+        <ask.sdk.version>2.11.2</ask.sdk.version>
+        <aws.lambda.java.log4j2>1.1.0</aws.lambda.java.log4j2>
+        <lombok.version>1.18.10</lombok.version>
+
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+    </properties>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-lambda-java-core</artifactId>
+            <version>${aws.lambda.java.core.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-iam</artifactId>
+            <version>${aws.sdk.version}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

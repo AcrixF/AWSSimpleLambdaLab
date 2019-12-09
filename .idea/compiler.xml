@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="a-Lab-Simple-Lambda" />
+        <module name="c-Lab-Simple-Lambda-CLI-CloudFormation" />
+        <module name="b-Lab-Simple-Lambda-CLI" />
+        <module name="d-Lab-Simple-Sdk-Aws-Iam" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="c-Lab-Simpe-Lambda-CLI-CloudFormation" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

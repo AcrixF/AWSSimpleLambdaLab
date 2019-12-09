@@ -1,0 +1,5 @@
+# Project exclude paths
+/a-Lab-Simple-Lambda/target/
+/b-Lab-Simple-Lambda-CLI/target/
+/c-Lab-Simple-Lambda-CLI-CloudFormation/target/
+/d-Lab-Simple-Sdk-Aws-Iam/target/
