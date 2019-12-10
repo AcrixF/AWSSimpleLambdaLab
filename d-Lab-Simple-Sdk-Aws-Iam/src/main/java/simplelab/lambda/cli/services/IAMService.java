@@ -2,7 +2,13 @@ package simplelab.lambda.cli.services;
 
 import com.amazonaws.services.identitymanagement.AmazonIdentityManagement;
 import com.amazonaws.services.identitymanagement.AmazonIdentityManagementClientBuilder;
-import com.amazonaws.services.identitymanagement.model.*;
+import com.amazonaws.services.identitymanagement.model.CreateUserRequest;
+import com.amazonaws.services.identitymanagement.model.CreateUserResult;
+import com.amazonaws.services.identitymanagement.model.DeleteConflictException;
+import com.amazonaws.services.identitymanagement.model.DeleteUserRequest;
+import com.amazonaws.services.identitymanagement.model.ListUsersRequest;
+import com.amazonaws.services.identitymanagement.model.ListUsersResult;
+import com.amazonaws.services.identitymanagement.model.User;
 import simplelab.lambda.cli.model.IAMOperationResponse;
 
 /**
@@ -17,31 +23,37 @@ public class IAMService {
     }
 
     /**
-     * Create User.
+     * Create user.
      * @param userName - user name.
      * @return IAMOperationResponse
      */
-
     public final IAMOperationResponse createUser(final String userName) {
-        CreateUserRequest request = new CreateUserRequest().withUserName(userName);
+
+        CreateUserRequest request =
+                new CreateUserRequest().withUserName(userName);
+
         CreateUserResult response = iamClient.createUser(request);
-        return new IAMOperationResponse( "Created user: " + response.getUser().getUserName(), null);
+
+        return new IAMOperationResponse(
+                "Created user " + response.getUser().getUserName(),
+                null);
     }
 
     /**
      * Check user.
      * @param userName - user name.
-     * @return IAMOperationResponse.
+     * @return IAMOperationResponse
      */
     public final IAMOperationResponse checkUser(final String userName) {
         boolean done = false;
         ListUsersRequest request = new ListUsersRequest();
+
         while (!done) {
             ListUsersResult response = iamClient.listUsers(request);
 
-            for (User user: response.getUsers()) {
+            for (User user : response.getUsers()) {
                 if (user.getUserName().equals(userName)) {
-                    return new IAMOperationResponse("User " + userName + " exists", null);
+                    return new IAMOperationResponse("User " + userName + " exist", null);
                 }
             }
 
@@ -51,26 +63,28 @@ public class IAMService {
                 done = true;
             }
         }
-
-        return new IAMOperationResponse(null, "User " + userName + " does not exists.");
+        return new IAMOperationResponse(null, "User " + userName + " does not exist");
     }
 
     /**
-     * Delete User.
-     * @param userName user - name
+     * Delete user.
+     * @param userName - user name.
      * @return IAMOperationResponse
      */
-    public IAMOperationResponse deleteUser(final String userName) {
-        DeleteUserRequest request = new DeleteUserRequest().withUserName(userName);
+    public final IAMOperationResponse deleteUser(final String userName) {
+        DeleteUserRequest request = new DeleteUserRequest()
+                .withUserName(userName);
 
         try {
             iamClient.deleteUser(request);
         } catch (DeleteConflictException e) {
-            return new IAMOperationResponse(null,"Unable to delete user");
+            return new IAMOperationResponse(null,
+                    "Unable to delete user");
         }
 
-        return new IAMOperationResponse("Delete user " + userName, null);
+        return new IAMOperationResponse(
+                "Deleted user " + userName,
+                null);
     }
 
 }
-

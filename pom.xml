@@ -48,7 +48,6 @@
             <artifactId>aws-java-sdk-iam</artifactId>
             <version>${aws.sdk.version}</version>
         </dependency>
-
     </dependencies>
 
 </project>
