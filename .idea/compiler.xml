@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="a-Lab-Simple-Lambda" />
+        <module name="d-Lab-Simple-Sdk-Aws-Iam" />
+        <module name="e-Lab-Simple-API-Cloudformat" />
         <module name="c-Lab-Simple-Lambda-CLI-CloudFormation" />
         <module name="b-Lab-Simple-Lambda-CLI" />
-        <module name="d-Lab-Simple-Sdk-Aws-Iam" />
+        <module name="f-Lab-Simple-Lambda-API-Integration" />
+        <module name="a-Lab-Simple-Lambda" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

@@ -1,0 +1,19 @@
+
+aws cloudformation create-stack \
+        --stack-name lambdaIntegration \
+        --template-body file://./lambda-for-api-gateway-cf-template.yml \
+        --region us-east-1 \
+        --profile produser \
+        --capabilities CAPABILITY_NAMED_IAM
+
+aws cloudformation create-stack \
+    --stack-name api-integration-lambda \
+    --template-url https://neoa.s3.amazonaws.com/api-gateway-for-lambda-integration-cf-template.yml \
+    --region us-east-1 \
+    --profile produser
+
+
+aws cloudformation describe-stacks \
+        --stack-name api-integration-lambda  \
+        --region us-east-1 \
+        --profile produser

@@ -12,6 +12,8 @@
         <module>b-Lab-Simple-Lambda-CLI</module>
         <module>c-Lab-Simple-Lambda-CLI-CloudFormation</module>
         <module>d-Lab-Simple-Sdk-Aws-Iam</module>
+        <module>e-Lab-Simple-API-Cloudformat</module>
+        <module>f-Lab-Simple-Lambda-API-Integration</module>
     </modules>
 
     <packaging>pom</packaging>

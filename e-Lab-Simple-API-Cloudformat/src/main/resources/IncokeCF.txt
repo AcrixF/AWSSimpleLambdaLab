@@ -1,0 +1,11 @@
+aws cloudformation create-stack \
+    --stack-name apiteststack \
+    --template-url https://neoa.s3.amazonaws.com/api-using-couldformat.yml \
+    --region us-east-1 \
+    --profile produser
+
+
+aws cloudformation describe-stacks \
+        --stack-name apiteststack \
+        --region us-east-1 \
+        --profile produser

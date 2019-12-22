@@ -7,7 +7,7 @@ import simplelab.lambda.cli.model.HandlerResponse;
 
 public final class LambdaHandler implements RequestHandler<HandlerRequest, HandlerResponse> {
 
-    public HandlerResponse handleRequest( final HandlerRequest request, final Context context) {
+    public HandlerResponse handleRequest(final HandlerRequest request, final Context context) {
         context.getLogger().log("Hello " + request.getName());
         return new HandlerResponse("Hello " + request.getName());
     }

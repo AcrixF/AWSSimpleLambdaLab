@@ -1,0 +1,60 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Building API with AWS CloudFormation
+Resources:
+  SecondRestAPI:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: Greeting API
+      Description: API for greeting an user
+      FailOnWarnings: true
+
+  GreetingResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SecondRestAPI
+      ParentId: !GetAtt SecondRestAPI.RootResourceId
+      PathPart: 'greeting'
+
+  NamePathParamResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SecondRestAPI
+      ParentId: !Ref GreetingResource
+      PathPart: '{name}'
+
+  MockMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: GET
+      Integration:
+        Type: MOCK
+        IntegrationHttpMethod: GET
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseTemplates:
+              application/json: "{\"message\": \"Hello $input.params('name')\" }"
+        RequestTemplates:
+          application/json: "{\"statusCode\": 200}"
+      ResourceId: !Ref NamePathParamResource
+      RestApiId: !Ref SecondRestAPI
+      MethodResponses:
+        - StatusCode: 200
+
+  SecondDeployment:
+    DependsOn: MockMethod
+    Type: AWS::ApiGateway::Deployment
+    Properties:
+      Description: 'Second Deployment'
+      RestApiId: !Ref SecondRestAPI
+      StageDescription:
+        Description: 'Dev Stage CF'
+      StageName: 'devstagecf'
+
+Outputs:
+  SampleEndpoint:
+    Description: 'Sample Endpoint'
+    Value: !Sub
+      - https://${API_ID}.execute-api.${AWS::Region}.amazonaws.com/devstagecf/greeting/Neoa
+      - API_ID: !Ref SecondRestAPI
